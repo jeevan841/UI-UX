@@ -1,0 +1,232 @@
+#cloak like interface
+
+<HTML>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloak-like Page Interface</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #111; color: white; font-family: sans-serif; }
+        #webgl-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; }
+        #content { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; text-align: center; padding: 20px; box-sizing: border-box; }
+        h1 { font-size: 5rem; }
+    </style>
+</head>
+<body>
+    <canvas id="webgl-canvas"></canvas>
+    <div id="content">
+        <h1>Pull the Page</h1>
+        <p>Drag your mouse across the canvas to see the effect.</p>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.rawgit.com/lo-th/Oimo.js/master/src/oimo.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+<JAVASCRIPT>
+// A simple cloth simulation using a Mass-Spring model.
+// This is an educational example and is not optimized for production.
+
+// --- Global variables ---
+let scene, camera, renderer, clothGeometry, clothMesh, physicsWorld;
+let mouse = new THREE.Vector2();
+let raycaster = new THREE.Raycaster();
+const cloth = {
+    width: 25,
+    height: 25,
+    segments: 30, // Number of divisions in the grid
+    particleMass: 1,
+    structuralStiffness: 100,
+    shearStiffness: 100
+};
+const particles =;
+const constraints =;
+
+// --- Initialization ---
+function init() {
+    // 1. Set up Three.js scene [8]
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 30;
+
+    renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('webgl-canvas'), alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(20, 20, 20);
+    scene.add(light);
+    scene.add(new THREE.AmbientLight(0x404040));
+
+    // 2. Set up a simple physics world [9, 10]
+    // A real-world app would use a more robust physics engine like Cannon.js or Oimo.js.
+    physicsWorld = {
+        gravity: new THREE.Vector3(0, -9.8, 0),
+        timestep: 1 / 60
+    };
+
+    // 3. Create the cloth mesh and physics particles
+    clothGeometry = new THREE.PlaneGeometry(cloth.width, cloth.height, cloth.segments, cloth.segments);
+    const material = new THREE.MeshPhongMaterial({ color: 0x87ceeb, side: THREE.DoubleSide });
+    clothMesh = new THREE.Mesh(clothGeometry, material);
+    scene.add(clothMesh);
+
+    // Create particles for the physics simulation
+    for (let i = 0; i < (cloth.segments + 1) * (cloth.segments + 1); i++) {
+        const particle = {
+            position: clothGeometry.attributes.position.array.slice(i * 3, i * 3 + 3),
+            previousPosition: clothGeometry.attributes.position.array.slice(i * 3, i * 3 + 3),
+            velocity: new THREE.Vector3(),
+            mass: cloth.particleMass,
+            isPinned: false
+        };
+        // Pin the top row of particles [11]
+        if (i <= cloth.segments) {
+            particle.mass = 0; // Mass of 0 makes it static
+            particle.isPinned = true;
+        }
+        particles.push(particle);
+    }
+    
+    // Create constraints (springs) between particles to simulate fabric properties
+    // In a real physics engine, this would be handled by the library
+    // This is a simplified mass-spring model [11]
+    for (let y = 0; y <= cloth.segments; y++) {
+        for (let x = 0; x <= cloth.segments; x++) {
+            const index = x + y * (cloth.segments + 1);
+            
+            // Structural constraints (horizontal and vertical)
+            if (x < cloth.segments) constraints.push();
+            if (y < cloth.segments) constraints.push();
+            
+            // Shear constraints (diagonals)
+            if (x < cloth.segments && y < cloth.segments) constraints.push();
+            if (x < cloth.segments && y < cloth.segments) constraints.push();
+        }
+    }
+
+    // --- Event listeners for interaction ---
+    window.addEventListener('resize', onWindowResize, false);
+    window.addEventListener('mousemove', onMouseMove, false);
+    window.addEventListener('mousedown', onMouseDown, false);
+    window.addEventListener('mouseup', onMouseUp, false);
+
+    animate();
+}
+
+// --- Animation loop ---
+function animate() {
+    requestAnimationFrame(animate);
+
+    // 1. Update physics simulation
+    updatePhysics();
+
+    // 2. Update Three.js mesh vertices to match particle positions
+    const positions = clothGeometry.attributes.position.array;
+    for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        positions[i * 3] = p.position;
+        positions[i * 3 + 1] = p.position[1];
+        positions[i * 3 + 2] = p.position[2];
+    }
+    clothGeometry.attributes.position.needsUpdate = true;
+    clothGeometry.computeVertexNormals();
+
+    // 3. Render the scene
+    renderer.render(scene, camera);
+}
+
+// --- Physics Simulation Functions ---
+function updatePhysics() {
+    // Verlet integration for positions
+    for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        if (p.mass === 0) continue;
+
+        const position = new THREE.Vector3(...p.position);
+        const tempPosition = position.clone();
+        const velocity = position.clone().sub(new THREE.Vector3(...p.previousPosition));
+
+        // Apply gravity
+        velocity.add(physicsWorld.gravity.clone().multiplyScalar(physicsWorld.timestep * physicsWorld.timestep));
+
+        p.previousPosition = tempPosition.toArray();
+        position.add(velocity);
+        p.position = position.toArray();
+    }
+
+    // Apply constraints
+    for (let i = 0; i < 50; i++) { // Multiple iterations for stability [11]
+        for (const constraint of constraints) {
+            const p1 = particles[constraint];
+            const p2 = particles[constraint[1]];
+            const distance = new THREE.Vector3(...p1.position).distanceTo(new THREE.Vector3(...p2.position));
+            const difference = distance - cloth.width / cloth.segments;
+            
+            const p1ToP2 = new THREE.Vector3(...p2.position).sub(new THREE.Vector3(...p1.position)).normalize();
+            
+            if (p1.mass!== 0) {
+                const p1Pos = new THREE.Vector3(...p1.position);
+                p1Pos.add(p1ToP2.clone().multiplyScalar(difference * 0.5));
+                p1.position = p1Pos.toArray();
+            }
+            if (p2.mass!== 0) {
+                const p2Pos = new THREE.Vector3(...p2.position);
+                p2Pos.sub(p1ToP2.clone().multiplyScalar(difference * 0.5));
+                p2.position = p2Pos.toArray();
+            }
+        }
+    }
+}
+
+// --- Event Handling Functions ---
+let isDragging = false;
+let draggedParticle = null;
+
+function onMouseDown(event) {
+    event.preventDefault();
+    isDragging = true;
+    
+    // Find the particle closest to the mouse click
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObject(clothMesh);
+    
+    if (intersects.length > 0) {
+        const face = intersects.face;
+        const index = face.a; // Pick one vertex of the intersected face
+        draggedParticle = particles[index];
+        draggedParticle.mass = 0; // Make it a static body while dragging
+    }
+}
+
+function onMouseMove(event) {
+    if (!isDragging ||!draggedParticle) return;
+
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, camera);
+    const intersectPoint = raycaster.ray.at(15, new THREE.Vector3()); // 15 is an arbitrary distance
+    draggedParticle.position = intersectPoint.toArray();
+}
+
+function onMouseUp(event) {
+    isDragging = false;
+    if (draggedParticle) {
+        draggedParticle.mass = cloth.particleMass; // Restore mass
+        draggedParticle = null;
+    }
+}
+
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+init();
