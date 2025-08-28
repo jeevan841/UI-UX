@@ -1,0 +1,298 @@
+<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibrant & Professional Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">Company Name</div>
+        <nav class="nav-menu">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link">About</a>
+            <a href="#" class="nav-link">Services</a>
+            <a href="#" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Crafting Your Future with Vibrant Design</h1>
+                <p>We provide innovative solutions that blend creativity with professionalism, ensuring your brand stands out with a touch of elegance.</p>
+                <a href="#" class="cta-button">Learn More</a>
+            </div>
+            <div class="hero-image">
+                </div>
+        </section>
+
+        <section class="content-block white-bg">
+            <div class="container">
+                <h2>Our Core Services</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="icon-placeholder pink-outline"></div>
+                        <h3>Web Development</h3>
+                        <p>Building responsive and powerful websites that deliver exceptional user experiences.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon-placeholder pink-outline"></div>
+                        <h3>Brand Identity</h3>
+                        <p>Creating memorable logos and brand guidelines that resonate with your audience.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon-placeholder pink-outline"></div>
+                        <h3>Digital Marketing</h3>
+                        <p>Developing strategies to grow your online presence and reach your target customers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block light-blue-bg">
+            <div class="container testimonial-container">
+                <div class="profile-image pink-border"></div>
+                <blockquote>"The team's work exceeded our expectations. The final design was both professional and beautifully vibrant."</blockquote>
+                <p class="testimonial-author">- Jane Doe, CEO of Innovate Inc.</p>
+            </div>
+        </section>
+
+        <section class="content-block white-bg">
+            <div class="container">
+                <h2>Our Portfolio</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item pink-border"></div>
+                    <div class="portfolio-item pink-border"></div>
+                    <div class="portfolio-item pink-border"></div>
+                    <div class="portfolio-item pink-border"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Company Name. All Rights Reserved.</p>
+            <div class="social-icons">
+                </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+
+
+<css>
+/* General Body & Typography */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    color: #444;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2 {
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+/* Header */
+.header {
+    background-color: #E6F7FF; /* Light Blue */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.nav-menu .nav-link {
+    text-decoration: none;
+    color: #555;
+    margin-left: 30px;
+    font-weight: 400;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #FF699D; /* A slightly darker pink for hover */
+}
+
+.nav-link:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #FFDCE5; /* Light Pink */
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover:after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 50px;
+    background-color: #FFFFFF; /* White */
+}
+
+.hero-content {
+    flex: 1;
+    padding-right: 50px;
+}
+
+.hero-image {
+    flex: 1;
+    height: 400px;
+    background-color: #f0f0f0; /* Placeholder for your image */
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #FFDCE5; /* Light Pink */
+    color: #333;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.cta-button:hover {
+    background-color: #FF699D; /* Darker pink for hover */
+    color: #fff;
+}
+
+/* Content Blocks */
+.content-block {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.white-bg {
+    background-color: #FFFFFF;
+}
+
+.light-blue-bg {
+    background-color: #E6F7FF;
+}
+
+/* Features Grid */
+.features-grid, .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    text-align: left;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-item {
+    text-align: center;
+}
+
+.icon-placeholder {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFDCE5; /* Light Pink for icon */
+}
+
+.pink-outline {
+    border: 3px solid #FFDCE5;
+    background-color: transparent;
+}
+
+/* Testimonial */
+.testimonial-container {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #ccc; /* Placeholder for profile image */
+    margin-bottom: 20px;
+}
+
+.pink-border {
+    border: 4px solid #FFDCE5;
+}
+
+blockquote {
+    font-style: italic;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.testimonial-author {
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/* Portfolio Grid */
+.portfolio-item {
+    height: 300px;
+    background-color: #f0f0f0; /* Placeholder for portfolio images */
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.portfolio-item:hover {
+    transform: scale(1.05);
+}
+
+/* Footer */
+.footer {
+    background-color: #FFDCE5; /* Light Pink */
+    color: #333;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
