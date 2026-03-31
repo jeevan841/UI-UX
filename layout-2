@@ -3,21 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Company Name — Vibrant & Professional</title>
+  <title>Company Name — Luxury Dark</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --pink: #FFDCE5;
-      --pink-mid: #FF699D;
-      --pink-dark: #c94b7b;
-      --blue: #E6F7FF;
-      --blue-mid: #9DD9F3;
-      --text: #1a1a2e;
-      --text-muted: #6b6b8a;
-      --white: #ffffff;
-      --off-white: #fafafa;
+      --pink: #2a2a2a;
+      --pink-mid: #c9a84f;   /* GOLD */
+      --pink-dark: #a88c3a;
+
+      --blue: #121212;
+      --blue-mid: #1f1f1f;
+
+      --text: #f5f5f5;
+      --text-muted: #b0b0b0;
+
+      --white: #0d0d0d;
+      --off-white: #1a1a1a;
     }
 
     html { scroll-behavior: smooth; }
@@ -26,637 +31,253 @@
       font-family: 'DM Sans', sans-serif;
       color: var(--text);
       background: var(--white);
-      overflow-x: hidden;
     }
 
-    /* ── HEADER ── */
+    /* HEADER */
     .header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(230, 247, 255, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(157, 217, 243, 0.4);
+      background: rgba(18,18,18,0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #2a2a2a;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 18px 60px;
-      animation: slideDown 0.6s ease both;
-    }
-
-    @keyframes slideDown {
-      from { transform: translateY(-100%); opacity: 0; }
-      to   { transform: translateY(0);     opacity: 1; }
     }
 
     .logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
       font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
     }
     .logo span { color: var(--pink-mid); }
 
-    .nav-menu { display: flex; align-items: center; gap: 36px; }
+    .nav-menu { display: flex; gap: 30px; }
 
     .nav-link {
       text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 400;
       color: var(--text-muted);
-      letter-spacing: 0.01em;
-      position: relative;
-      transition: color 0.25s;
+      font-size: 0.9rem;
+      transition: 0.3s;
     }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0; height: 2px;
-      background: var(--pink-mid);
-      bottom: -4px; left: 0;
-      transition: width 0.3s ease;
-      border-radius: 2px;
-    }
-    .nav-link:hover { color: var(--text); }
-    .nav-link:hover::after { width: 100%; }
+    .nav-link:hover { color: var(--pink-mid); }
 
     .nav-cta {
-      background: var(--pink);
-      color: var(--text);
-      font-size: 0.875rem;
-      font-weight: 500;
-      padding: 9px 22px;
-      border-radius: 100px;
+      background: var(--pink-mid);
+      color: black;
+      padding: 8px 20px;
+      border-radius: 30px;
       text-decoration: none;
-      transition: background 0.25s, color 0.25s, transform 0.2s;
+      font-size: 0.85rem;
     }
-    .nav-cta:hover { background: var(--pink-mid); color: var(--white); transform: translateY(-1px); }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
-      min-height: 88vh;
       display: flex;
       align-items: center;
       padding: 80px 60px;
-      background: var(--white);
-      position: relative;
-      overflow: hidden;
+      gap: 40px;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -120px; right: -120px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, #FFDCE5 0%, transparent 70%);
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
-    .hero-content {
-      flex: 1;
-      padding-right: 60px;
-      animation: fadeUp 0.8s 0.2s ease both;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--pink-mid);
-      margin-bottom: 20px;
-    }
-    .hero-eyebrow::before {
-      content: '';
-      display: block;
-      width: 28px; height: 2px;
-      background: var(--pink-mid);
-      border-radius: 2px;
-    }
+    .hero-content { flex: 1; }
 
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.6rem, 5vw, 4rem);
-      font-weight: 700;
-      line-height: 1.18;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      margin-bottom: 24px;
+      font-size: 3rem;
+      margin-bottom: 20px;
     }
-    .hero h1 em {
-      font-style: normal;
-      color: var(--pink-mid);
-    }
+    .hero h1 em { color: var(--pink-mid); }
 
     .hero p {
-      font-size: 1.05rem;
-      font-weight: 300;
-      line-height: 1.75;
       color: var(--text-muted);
-      max-width: 480px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
+      max-width: 500px;
     }
-
-    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
 
     .cta-button {
-      display: inline-block;
-      background: var(--text);
-      color: var(--white);
-      padding: 15px 36px;
-      border-radius: 100px;
+      background: var(--pink-mid);
+      color: black;
+      padding: 14px 30px;
+      border-radius: 30px;
       text-decoration: none;
-      font-size: 0.9rem;
       font-weight: 500;
-      letter-spacing: 0.02em;
-      transition: transform 0.2s, background 0.25s;
     }
-    .cta-button:hover { background: var(--pink-dark); transform: translateY(-2px); }
-
-    .cta-secondary {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: color 0.2s;
-    }
-    .cta-secondary:hover { color: var(--pink-mid); }
-    .cta-secondary svg { transition: transform 0.2s; }
-    .cta-secondary:hover svg { transform: translateX(3px); }
 
     .hero-image {
       flex: 1;
-      height: 460px;
-      border-radius: 24px;
-      background: linear-gradient(135deg, var(--blue) 0%, var(--pink) 100%);
-      position: relative;
-      overflow: hidden;
-      animation: fadeUp 0.8s 0.4s ease both;
-    }
-
-    .hero-image::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FF699D' fill-opacity='0.08'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-
-    .hero-image-inner {
-      position: absolute;
-      inset: 0;
+      height: 350px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .floating-card {
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(10px);
-      border-radius: 18px;
-      padding: 20px 24px;
-      border: 1px solid rgba(255,255,255,0.9);
-      animation: float 4s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-10px); }
-    }
-    .floating-card p { font-size: 0.85rem; color: var(--text-muted); }
-    .floating-card strong { font-size: 1.6rem; font-weight: 700; color: var(--text); font-family: 'Playfair Display', serif; }
-
-    .stats-row {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
-    }
-    .stat-pill {
-      background: var(--pink);
-      border-radius: 100px;
-      padding: 5px 12px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--pink-dark);
-    }
-
-    /* ── SECTION BASE ── */
-    section { padding: 100px 60px; }
-
-    .section-label {
+      background: #111;
+      border: 1px solid #333;
+      padding: 20px;
+      border-radius: 16px;
       text-align: center;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--pink-mid);
-      margin-bottom: 14px;
     }
+
+    .floating-card strong {
+      color: var(--pink-mid);
+      font-size: 1.8rem;
+    }
+
+    /* SECTIONS */
+    section { padding: 80px 60px; }
 
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
-      font-weight: 700;
       text-align: center;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      margin-bottom: 16px;
+      margin-bottom: 40px;
+      font-size: 2rem;
     }
 
-    .section-sub {
-      text-align: center;
-      font-size: 1rem;
-      font-weight: 300;
-      color: var(--text-muted);
-      max-width: 520px;
-      margin: 0 auto 64px;
-      line-height: 1.7;
-    }
-
-    /* ── SERVICES ── */
-    .services { background: var(--white); }
-
+    /* SERVICES */
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 28px;
-      max-width: 1100px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      gap: 20px;
     }
 
     .feature-item {
       background: var(--off-white);
-      border: 1px solid #f0f0f0;
-      border-radius: 20px;
-      padding: 36px 32px;
-      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-      cursor: default;
+      padding: 30px;
+      border-radius: 15px;
+      border: 1px solid #2a2a2a;
+      transition: 0.3s;
     }
     .feature-item:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(255,105,157,0.1);
-      border-color: var(--pink);
+      transform: translateY(-5px);
+      border-color: var(--pink-mid);
+      box-shadow: 0 10px 30px rgba(201,168,79,0.15);
     }
 
-    .icon-wrap {
-      width: 52px; height: 52px;
-      border-radius: 14px;
-      background: var(--pink);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 24px;
-    }
-    .icon-wrap svg { width: 22px; height: 22px; }
+    .feature-item h3 { margin-bottom: 10px; }
 
-    .feature-item h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--text);
-    }
+    .feature-item p { color: var(--text-muted); }
 
-    .feature-item p {
-      font-size: 0.9rem;
-      font-weight: 300;
-      line-height: 1.7;
-      color: var(--text-muted);
-    }
-
-    /* ── TESTIMONIAL ── */
+    /* TESTIMONIAL */
     .testimonial-section {
-      background: var(--blue);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .testimonial-section::before {
-      content: '"';
-      position: absolute;
-      top: 10px; left: 50px;
-      font-family: 'Playfair Display', serif;
-      font-size: 18rem;
-      color: rgba(157,217,243,0.25);
-      line-height: 1;
-      pointer-events: none;
-    }
-
-    .testimonial-container {
-      max-width: 720px;
-      margin: 0 auto;
+      background: #111;
       text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .profile-image {
-      width: 80px; height: 80px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--pink-mid), var(--blue-mid));
-      margin: 0 auto 28px;
-      border: 4px solid var(--white);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: var(--white);
     }
 
     blockquote {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Playfair Display';
       font-style: italic;
-      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-      line-height: 1.6;
-      color: var(--text);
-      margin-bottom: 28px;
+      margin: 20px auto;
+      max-width: 600px;
     }
 
-    .testimonial-author {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
-    }
-
-    .stars {
-      display: flex; justify-content: center; gap: 4px;
-      margin-bottom: 20px;
-    }
-    .star { color: var(--pink-mid); font-size: 1rem; }
-
-    /* ── PORTFOLIO ── */
-    .portfolio { background: var(--white); }
-
+    /* PORTFOLIO */
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2,1fr);
       gap: 20px;
-      max-width: 1100px;
-      margin: 0 auto;
     }
 
     .portfolio-item {
-      border-radius: 18px;
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-      background: linear-gradient(135deg, var(--blue), var(--pink));
+      height: 200px;
+      background: linear-gradient(135deg,#1a1a1a,#333);
+      border-radius: 15px;
     }
 
-    .portfolio-item:nth-child(1) { height: 280px; }
-    .portfolio-item:nth-child(2) { height: 280px; background: linear-gradient(135deg, var(--pink), #f0c0d4); }
-    .portfolio-item:nth-child(3) { height: 220px; background: linear-gradient(135deg, #d4eef9, var(--blue-mid)); }
-    .portfolio-item:nth-child(4) { height: 220px; background: linear-gradient(135deg, #ffe8ef, var(--pink-mid)); }
-
-    .portfolio-overlay {
-      position: absolute; inset: 0;
-      background: rgba(26,26,46,0);
-      display: flex; align-items: flex-end;
-      padding: 24px;
-      transition: background 0.35s;
-    }
-    .portfolio-item:hover .portfolio-overlay { background: rgba(26,26,46,0.55); }
-
-    .portfolio-info {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s, transform 0.3s;
-      color: var(--white);
-    }
-    .portfolio-item:hover .portfolio-info { opacity: 1; transform: translateY(0); }
-    .portfolio-info h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; }
-    .portfolio-info span { font-size: 0.8rem; opacity: 0.75; }
-
-    /* ── FOOTER ── */
+    /* FOOTER */
     .footer {
-      background: var(--pink);
-      padding: 48px 60px;
+      background: #111;
+      padding: 40px;
+      text-align: center;
     }
 
-    .footer-content {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--text);
-    }
     .footer-logo span { color: var(--pink-mid); }
 
     .footer-copy {
-      font-size: 0.85rem;
       color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 10px;
     }
 
-    .social-icons { display: flex; gap: 14px; }
-
-    .social-icon {
-      width: 38px; height: 38px;
-      border-radius: 50%;
-      background: var(--white);
-      display: flex; align-items: center; justify-content: center;
-      transition: transform 0.2s, background 0.2s;
-      text-decoration: none;
-    }
-    .social-icon:hover { transform: translateY(-3px); background: var(--text); }
-    .social-icon:hover svg path { fill: var(--white); }
-    .social-icon svg { width: 16px; height: 16px; }
-
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .header { padding: 16px 24px; }
-      section { padding: 70px 24px; }
-      .hero { flex-direction: column; padding: 60px 24px; min-height: auto; gap: 40px; }
-      .hero::before { display: none; }
-      .hero-content { padding-right: 0; }
-      .hero-image { width: 100%; }
+    /* MOBILE */
+    @media(max-width:768px){
+      .hero { flex-direction: column; }
       .portfolio-grid { grid-template-columns: 1fr; }
-      .footer { padding: 40px 24px; }
-      .footer-content { flex-direction: column; text-align: center; }
-      .nav-menu .nav-link { display: none; }
     }
+
   </style>
 </head>
+
 <body>
 
-  <!-- ── HEADER ── -->
-  <header class="header">
-    <div class="logo">Company<span>.</span></div>
-    <nav class="nav-menu">
-      <a href="#" class="nav-link">Home</a>
-      <a href="#services" class="nav-link">Services</a>
-      <a href="#portfolio" class="nav-link">Portfolio</a>
-      <a href="#contact" class="nav-link">Contact</a>
-      <a href="#contact" class="nav-cta">Get in touch</a>
-    </nav>
-  </header>
+<header class="header">
+  <div class="logo">Company<span>.</span></div>
+  <nav class="nav-menu">
+    <a href="#" class="nav-link">Home</a>
+    <a href="#" class="nav-link">Services</a>
+    <a href="#" class="nav-link">Portfolio</a>
+    <a href="#" class="nav-cta">Contact</a>
+  </nav>
+</header>
 
-  <!-- ── HERO ── -->
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-eyebrow">Design Studio</div>
-      <h1>Crafting Your Future<br>with <em>Vibrant</em> Design</h1>
-      <p>We provide innovative solutions that blend creativity with professionalism, ensuring your brand stands out with a touch of elegance.</p>
-      <div class="hero-actions">
-        <a href="#services" class="cta-button">Explore our work</a>
-        <a href="#contact" class="cta-secondary">
-          Let's talk
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#6b6b8a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-    </div>
-    <div class="hero-image">
-      <div class="hero-image-inner">
-        <div class="floating-card">
-          <p>Happy clients</p>
-          <strong>200+</strong>
-          <div class="stats-row">
-            <div class="stat-pill">Web Dev</div>
-            <div class="stat-pill">Branding</div>
-            <div class="stat-pill">Marketing</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="hero">
+  <div class="hero-content">
+    <h1>Crafting Your Future with <em>Luxury Design</em></h1>
+    <p>We create premium digital experiences that elevate your brand.</p>
+    <a href="#" class="cta-button">Get Started</a>
+  </div>
 
-  <!-- ── SERVICES ── -->
-  <section class="services reveal" id="services">
-    <div class="section-label">What we do</div>
-    <h2 class="section-title">Our Core Services</h2>
-    <p class="section-sub">From concept to launch, we handle every detail so you can focus on what matters most — growing your business.</p>
-    <div class="features-grid">
-      <div class="feature-item">
-        <div class="icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="#c94b7b" stroke-width="1.8"/><path d="M8 20h8M12 18v2" stroke="#c94b7b" stroke-width="1.8" stroke-linecap="round"/></svg>
-        </div>
-        <h3>Web Development</h3>
-        <p>Building responsive, fast, and powerful websites that deliver exceptional user experiences across every device.</p>
-      </div>
-      <div class="feature-item">
-        <div class="icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="#c94b7b" stroke-width="1.8"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5.64 5.64l1.42 1.42M16.94 16.94l1.42 1.42M5.64 18.36l1.42-1.42M16.94 7.06l1.42-1.42" stroke="#c94b7b" stroke-width="1.8" stroke-linecap="round"/></svg>
-        </div>
-        <h3>Brand Identity</h3>
-        <p>Creating memorable logos and brand guidelines that truly resonate with your audience and leave a lasting impression.</p>
-      </div>
-      <div class="feature-item">
-        <div class="icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M3 17l5-5 4 4 5-6 4 4" stroke="#c94b7b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <h3>Digital Marketing</h3>
-        <p>Developing strategies to grow your online presence and reach the exact customers who need what you offer.</p>
-      </div>
+  <div class="hero-image">
+    <div class="floating-card">
+      <p>Clients</p>
+      <strong>200+</strong>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ── TESTIMONIAL ── -->
-  <section class="testimonial-section reveal">
-    <div class="testimonial-container">
-      <div class="profile-image">JD</div>
-      <div class="stars">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-      </div>
-      <blockquote>"The team's work exceeded our expectations. The final design was both professional and beautifully vibrant — exactly what our brand needed."</blockquote>
-      <p class="testimonial-author">Jane Doe · CEO, Innovate Inc.</p>
+<section>
+  <h2 class="section-title">Our Services</h2>
+  <div class="features-grid">
+    <div class="feature-item">
+      <h3>Web Development</h3>
+      <p>Fast, responsive and premium websites.</p>
     </div>
-  </section>
-
-  <!-- ── PORTFOLIO ── -->
-  <section class="portfolio reveal" id="portfolio">
-    <div class="section-label">Selected work</div>
-    <h2 class="section-title">Our Portfolio</h2>
-    <p class="section-sub">A curated selection of projects we're proud of — each one crafted with purpose and precision.</p>
-    <div class="portfolio-grid">
-      <div class="portfolio-item">
-        <div class="portfolio-overlay">
-          <div class="portfolio-info">
-            <h4>Bloom E-Commerce</h4>
-            <span>Web Development · 2024</span>
-          </div>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <div class="portfolio-overlay">
-          <div class="portfolio-info">
-            <h4>Luxe Brand Identity</h4>
-            <span>Brand Design · 2024</span>
-          </div>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <div class="portfolio-overlay">
-          <div class="portfolio-info">
-            <h4>Nova Campaign</h4>
-            <span>Digital Marketing · 2023</span>
-          </div>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <div class="portfolio-overlay">
-          <div class="portfolio-info">
-            <h4>Zenith Dashboard</h4>
-            <span>Web Development · 2023</span>
-          </div>
-        </div>
-      </div>
+    <div class="feature-item">
+      <h3>Brand Identity</h3>
+      <p>Luxury branding that stands out.</p>
     </div>
-  </section>
-
-  <!-- ── FOOTER ── -->
-  <footer class="footer" id="contact">
-    <div class="footer-content">
-      <div class="footer-logo">Company<span>.</span></div>
-      <p class="footer-copy">© 2025 Company Name. All Rights Reserved.</p>
-      <div class="social-icons">
-        <!-- Twitter/X -->
-        <a href="#" class="social-icon" aria-label="Twitter">
-          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="#1a1a2e"/></svg>
-        </a>
-        <!-- LinkedIn -->
-        <a href="#" class="social-icon" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zm2-3a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="#1a1a2e"/></svg>
-        </a>
-        <!-- Instagram -->
-        <a href="#" class="social-icon" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#1a1a2e" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="#1a1a2e" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="#1a1a2e"/></svg>
-        </a>
-      </div>
+    <div class="feature-item">
+      <h3>Marketing</h3>
+      <p>Grow your business with smart strategy.</p>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
+<section class="testimonial-section">
+  <blockquote>
+    "Absolutely stunning design. Our brand now feels premium and powerful."
+  </blockquote>
+  <p>- CEO, Company</p>
+</section>
+
+<section>
+  <h2 class="section-title">Portfolio</h2>
+  <div class="portfolio-grid">
+    <div class="portfolio-item"></div>
+    <div class="portfolio-item"></div>
+    <div class="portfolio-item"></div>
+    <div class="portfolio-item"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-logo">Company<span>.</span></div>
+  <p class="footer-copy">© 2025 Company. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
